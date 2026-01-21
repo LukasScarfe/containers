@@ -1,11 +1,11 @@
-# 1. Ignore everything
+# Ignore everything
 *
 */.env
 
-# 2. BUT do not ignore directories (otherwise we can't look inside them)
+# Do not ignore directories
 !*/
 
-# 3. BUT do not ignore the specific files we want
+# Do not ignore specific files
 !**/docker-compose.yml
 !**/docker-compose.yaml
 !**/.gitignore
@@ -14,7 +14,13 @@
 !**/LICENSE.txt
 !**/.env.example
 
-# 4. (Optional) Ignore the actual data/config content inside those folders again 
-# just to be safe, though the '*' at the top usually handles this.
+
+
+# Ignore data/config content inside those folders again just to be safe
 **/data/*
 **/config/*
+
+
+# Unignore the YAML and CSS files inside that config folder
+!/infrastructure/homepage/config/*.yaml
+!/infrastructure/homepage/config/*.css

@@ -1,0 +1,30 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Developer:
+    - Github:
+        - abbr: GH
+          href: https://github.com/LukasScarfe
+      
+    - CloudFlare:
+        - abbr: CF
+          href: https://dash.cloudflare.com/  
+
+    - Router:
+        - abbr: TP
+          href: http://192.168.1.1
+
+
+- Entertainment:
+    - Reddit:
+        - abbr: RE
+          href: https://reddit.com/
+    - YouTube:
+        - abbr: YT
+          href: https://youtube.com/
+
+- Footer:
+    - My GitHub Image:
+        icon: https://raw.githubusercontent.com/LukasScarfe/containers/main/your-image.png
+        href: https://github.com/LukasScarfe # Link to your repo

@@ -1,0 +1,192 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Media:
+    - Plex:
+        icon: plex.png
+        href: https://app.plex.tv/desktop/#!/
+        description: Media Server
+        container: plex
+        server: my-docker
+        ping: "{{HOMEPAGE_VAR_LOCAL_IP}}:32400"
+        widget:
+          type: plex
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:32400"
+          key: "{{HOMEPAGE_VAR_PLEX_KEY}}"
+          fields: ["streams", "movies", "tv"]
+
+    - Tautulli:
+        icon: tautulli.png
+        href: https://tautulli.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Plex Statistics
+        container: tautulli
+        ping: https://tautulli.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: tautulli
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8181"
+          key: "{{HOMEPAGE_VAR_TAUTULLI_KEY}}"
+          enableUser: true
+          showEpisodeNumber: true
+
+    - qBittorrent:
+        icon: qbittorrent.png
+        href: https://qbit.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Torrent Client
+        container: qbittorrent
+        ping: https://qbit.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: qbittorrent
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8484"
+          username: "{{HOMEPAGE_VAR_QBIT_USER}}"
+          password: "{{HOMEPAGE_VAR_QBIT_PASSWORD}}"
+
+    - Overseerr:
+        icon: overseerr.png
+        href: https://requests.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Media Requests
+        container: overseerr
+        ping: https://requests.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: overseerr
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:5055"
+          key: "{{HOMEPAGE_VAR_OVERSEER_KEY}}"
+
+    - Home Assistant:
+        icon: home-assistant.png
+        href: https://homeassistant.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Home Automation
+        ping: https://homeassistant.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: homeassistant
+          url: "{{HOMEPAGE_VAR_HOMEASSISTANT_URL}}"
+          key: "{{HOMEPAGE_VAR_HOMEASSISTANT_KEY}}"
+          custom:
+            - state: zone.home
+              label: People Home
+            - state: light.all_grow_lights
+              label: Grow Lights
+            - state: switch.global_sleep_switches
+              label: Sleep Lights
+
+    - Sonarr:
+        icon: sonarr.png
+        href: https://sonarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: TV Series Management
+        container: sonarr
+        ping: https://sonarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: sonarr
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8989"
+          key: "{{HOMEPAGE_VAR_SONARR_KEY}}"
+          fields: ["wanted", "missing", "series"]
+          enableQueue: false
+
+    - Radarr:
+        icon: radarr.png
+        href: https://radarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Movie Management
+        container: radarr
+        ping: https://radarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: radarr
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:7878"
+          key: "{{HOMEPAGE_VAR_RADARR_KEY}}"
+
+          fields: ["wanted", "missing", "movies"]
+          enableQueue: false
+
+    - Bazarr:
+        icon: bazarr.png
+        href: https://bazarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Subtitle Management
+        container: bazarr
+        ping: https://bazarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: bazarr
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:6767"
+          key: "{{HOMEPAGE_VAR_BAZARR_KEY}}"
+
+    - Speedtest:
+        icon: speedtest-tracker.png
+        href: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Speedtest Tracker
+        container: speedtest-tracker
+        ping: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: speedtest
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:80"
+          key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
+          version: 2 
+          bitratePrecision: 0
+
+    
+    - MeTube:
+        icon: metube.png
+        href: https://youtube.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: YouTube Downloader
+        server: my-docker
+        container: metube
+        ping: https://youtube.{{HOMEPAGE_VAR_EXPOSED_URL}}
+
+
+    - Calibre-Web Automated:
+        icon: calibre-web.png
+        href: https://books.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: E-book Library
+        server: my-docker
+        container: calibre
+        ping: https://books.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: calibreweb
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8083"
+          username: "{{HOMEPAGE_VAR_CALIBRE_USER}}"
+          password: "{{HOMEPAGE_VAR_CALIBRE_PASSWORD}}"
+          fields: ["books", "authors", "series"]
+
+    - CWA Downloader:
+        icon: https://raw.githubusercontent.com/calibrain/shelfmark/refs/heads/main/src/frontend/public/logo.png
+        href: http://bookrequests.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: E-book Search & Request
+        server: my-docker
+        container: shelfmark
+        ping: http://bookrequests.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        #ping: {{HOMEPAGE_VAR_LOCAL_IP}}:8084
+        
+
+    - Agregarr:
+        icon: https://raw.githubusercontent.com/agregarr/agregarr/refs/heads/develop/public/android-chrome-512x512.png
+        href: https://agregarr.{{HOMEPAGE_VAR_EXPOSED_URL}} 
+        description: Plex Collections Manager
+        container: agregarr
+        server: my-docker
+        ping: https://agregarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        #ping: {{HOMEPAGE_VAR_LOCAL_IP}}:7171
+
+    - Prowlarr:
+        icon: prowlarr.png
+        href: https://prowlarr.{{HOMEPAGE_VAR_EXPOSED_URL}}/ 
+        description: Indexer Manager
+        container: prowlarr
+        ping: https://prowlarr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+          type: prowlarr
+          url: "{{HOMEPAGE_VAR_LOCAL_IP}}:9696"
+          key: "{{HOMEPAGE_VAR_PROWLARR_KEY}}"
+          # Optional: custom stats fields
+          fields: ["numberOfGrabs", "numberOfQueries"]
+
+    - Michelle's Code:
+        icon: visual-studio-code.png
+        href: https://code.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        description: Michelle's place for coding and Anki Cards
+        container: vscode
+        ping: https://code.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        #ping: {{HOMEPAGE_VAR_LOCAL_IP}}:8443
+        showStats: true
+    
+    - My Portfolio:
+        icon: https://raw.githubusercontent.com/LukasScarfe/personal_site/refs/heads/master/assets/img/logo.png 
+        href: https://{{HOMEPAGE_VAR_EXPOSED_URL}}/
+        description: "{{HOMEPAGE_VAR_EXPOSED_URL}}"
+        ping: https://{{HOMEPAGE_VAR_EXPOSED_URL}}/
