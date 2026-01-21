@@ -1,0 +1,56 @@
+services:
+  #### CALIBRE-WEB AUTOMATED ####
+  calibre-web-automated:
+    image: crocodilestick/calibre-web-automated:latest
+    container_name: calibre
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+      - NETWORK_SHARE_MODE=false
+      - CWA_PORT_OVERRIDE=8083
+    volumes:
+      - ./calibre/config:/config
+      - ${CALIBRE_INGEST}:/cwa-book-ingest:rw
+      - ${CALIBRE_LIBRARY}:/calibre-library
+      - ./calibre/plugins:/config/.config/calibre/plugins
+    ports:
+      - "8083:8083"
+    networks:
+      - books-nw
+    entrypoint: >
+      /bin/bash -c "
+      sed -i 's/if client == \"kobo\" and book_format == \"kepub\":/if book_format == \"kepub\":/g' /app/calibre-web-automated/cps/helper.py &&
+      exec /init
+      "
+
+  #### SHELFMARK - DOWNLOAD BOOKS ####
+  shelfmark:
+    image: ghcr.io/calibrain/shelfmark:latest
+    container_name: shelfmark
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+      - FLASK_PORT=8084
+      - INGEST_DIR=/books # The internal container path
+    volumes:
+      - ./shelfmark/config:/config
+      # Point this to the SAME ingest folder as CWA
+      - ${CALIBRE_INGEST}:/books 
+    ports:
+      - "8084:8084"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8084/api/health"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    networks:
+      - books-nw
+  
+networks:
+  books-nw:
+    name: books-nw
+    driver: bridge

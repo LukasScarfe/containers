@@ -1,0 +1,20 @@
+# 1. Ignore everything
+*
+*/.env
+
+# 2. BUT do not ignore directories (otherwise we can't look inside them)
+!*/
+
+# 3. BUT do not ignore the specific files we want
+!**/docker-compose.yml
+!**/docker-compose.yaml
+!**/.gitignore
+!**/README.md
+!**/LICENSE
+!**/LICENSE.txt
+!**/.env.example
+
+# 4. (Optional) Ignore the actual data/config content inside those folders again 
+# just to be safe, though the '*' at the top usually handles this.
+**/data/*
+**/config/*

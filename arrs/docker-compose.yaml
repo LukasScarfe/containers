@@ -1,0 +1,118 @@
+services:
+
+  #### OVERSEERR: Request Management ####
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+    volumes:
+      - ./overseerr/config:/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+
+
+
+  #### PROWLARR: The Indexer Manager ####
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+    volumes:
+      - ./prowlarr/config:/config
+    ports:
+      - "9696:9696"
+    networks:
+      - arrs-nw
+
+  flaresolverr:
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=America/Vancouver
+    security_opt:
+      - no-new-privileges:true
+    restart: always
+
+
+
+  #### RADARR: Movies ####
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+    volumes:
+      - ./radarr/config:/config
+      - ${MOVIES_12_DIR}:/movies-Twelve
+      - ${MOVIES_6_DIR}:/movies-NewHDD
+      - ${DOWNLOADS_DIR}:/downloads
+    ports:
+      - "7878:7878"
+    networks:
+      - arrs-nw
+
+
+  #### SONARR: TV Shows ####
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+    volumes:
+      - ./sonarr/config:/config
+      - ${TV_6_DIR}:/tv-NewHDD
+      - ${TV_12_DIR}:/tv-Twelve
+      - ${DOWNLOADS_DIR}:/downloads
+    ports:
+      - "8989:8989"
+    networks:
+      - arrs-nw
+
+  #### BAZARR: Subtitles ####
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+    volumes:
+      - ./bazarr/config:/config
+      - ${MOVIES_12_DIR}:/movies-twelve
+      - ${TV_12_DIR}:/tv-twelve
+      - ${MOVIES_6_DIR}:/movies-newHDD
+      - ${TV_6_DIR}:/tv-newHDD
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    networks:
+      - arrs-nw
+
+  #### AGREGARR: Metadata Aggregator ####
+  agregarr:
+    image: agregarr/agregarr:latest
+    container_name: agregarr
+    volumes:
+       - .agregarr/config:/app/config
+    ports:
+      - 7171:7171
+    restart: unless-stopped
+
+networks:
+  arrs-nw:
+    name: arrs-nw
+    driver: bridge

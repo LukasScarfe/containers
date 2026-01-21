@@ -1,0 +1,59 @@
+services:
+  #### PLEX ####
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+      - VERSION=public
+    devices:
+      - /dev/dri:/dev/dri 
+    volumes:
+      - ./plex/config:/config
+      # Drive: Twelve1
+      - /media/lukas/Twelve1/Plex/Movies:/movies-twelve
+      - /media/lukas/Twelve1/Plex/Movies4k:/movies-4k-twelve
+      - /media/lukas/Twelve1/Plex/TV:/tv-twelve
+      - /media/lukas/Twelve1/Plex/TV4k:/tv-4k-twelve
+      - /media/lukas/Twelve1/Plex/GreatCourses:/great-courses
+      - /media/lukas/Twelve1/Plex/Youtube:/youtube
+      # Drive: NewHDD
+      - /media/lukas/NewHDD/PlexMedia/Movies:/movies-newHDD
+      - /media/lukas/NewHDD/PlexMedia/TV:/tv-NEWHDD
+    restart: unless-stopped
+
+  #### TAUTULLI ####
+  tautulli:
+    image: lscr.io/linuxserver/tautulli:latest
+    container_name: tautulli
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+    volumes:
+      - ./tautulli/config:/config
+    ports:
+      - 8181:8181
+    restart: unless-stopped
+    networks:
+      - media-nw
+
+  #### WRAPPERR ####
+  wrapperr:
+    ports:
+      - '8282:8282'
+    container_name: wrapperr
+    image: ghcr.io/aunefyren/wrapperr:latest
+    restart: unless-stopped
+    volumes:
+      - './wrapperr/config:/app/config'
+    networks:
+      - media-nw
+
+networks:
+  media-nw:
+    name: media-nw
+    driver: bridge

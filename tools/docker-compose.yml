@@ -1,0 +1,71 @@
+services:
+
+
+  #### MINI-QR: QR Code Generator ####
+  mini-qr:
+    image: ghcr.io/lyqht/mini-qr:main
+    container_name: mini-qr
+    restart: unless-stopped
+    ports:
+      - "5675:8080"
+    volumes:
+      - ./mini-qr/data/app/data:/app/data
+    networks:
+      - tools-nw
+
+
+
+  #### MEALIE: Recipe Manager & Meal Planner ####
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+    ports:
+      - "9925:9000"
+    volumes:
+      - ./mealie/app/data:/app/data
+    environment:
+      - TZ=America/Vancouver
+    networks:
+      - tools-nw
+
+
+
+  #### METUBE: YouTube Video Downloader ####
+  metube:
+    image: ghcr.io/alexta69/metube:latest
+    container_name: metube
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - ${YOUTUBE_DOWNLOADS_DIR}:/downloads
+    networks:
+      - tools-nw
+
+
+
+  #### VS Code Server: Michelle's Code ####
+  vscode:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: vscode
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Vancouver
+      - PASSWORD=${VSCODE_PASS}
+      - SUDO_PASSWORD=${VSCODE_PASS}
+      - DEFAULT_WORKSPACE=./vscode/config/workspaces/Anki 
+    restart: unless-stopped
+    ports:
+      - 8443:8443
+    volumes:
+      - ./vscode/config:/config
+    networks:
+      - tools-nw
+
+
+networks:
+  tools-nw:
+    name: tools-nw
+    driver: bridge
