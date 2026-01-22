@@ -3,28 +3,31 @@
 # https://gethomepage.dev/configs/bookmarks
 
 - Developer:
-    - Github:
-        - abbr: GH
-          href: https://github.com/LukasScarfe
-      
-    - CloudFlare:
-        - abbr: CF
-          href: https://dash.cloudflare.com/  
+  - My Github:
+      - abbr: GH
+        href: https://github.com/LukasScarfe
+    
+  - CloudFlare:
+      - abbr: CF
+        href: https://dash.cloudflare.com/  
 
-    - Router:
-        - abbr: TP
-          href: http://192.168.1.1
+  - Router:
+      - abbr: TP
+        href: http://192.168.1.1
 
 
-- Entertainment:
-    - Reddit:
-        - abbr: RE
-          href: https://reddit.com/
-    - YouTube:
-        - abbr: YT
-          href: https://youtube.com/
+- Useful Sites:
 
-- Footer:
-    - My GitHub Image:
-        icon: https://raw.githubusercontent.com/LukasScarfe/containers/main/your-image.png
-        href: https://github.com/LukasScarfe # Link to your repo
+  - Google Scholar:
+        - abbr: GS
+          href: https://scholar.google.com/citations?user=_eBW18oAAAAJ&hl=en&oi=ao
+
+  - Lukas Scarfe:
+      - abbr: LS
+        href: https://lukasscarfe.com
+
+  - Free Media Heck Yeah:
+      - abbr: FM
+        href: https://fmhy.net/
+
+    

@@ -3,12 +3,15 @@
 # https://gethomepage.dev/configs/settings/
 
 title: Lukas Scarfe Homepage
+
+favicon: https://raw.githubusercontent.com/LukasScarfe/personal_site/refs/heads/master/static/favicon.ico
+
 background: 
-  image: https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-  blur: sm
+  image: https://wallpapercave.com/wp/wp4183789.jpg
+  blur: xs
   saturate: 100
-  brightness: 50
-  opacity: 50
+  brightness: 40
+  opacity: 25
   
 theme: dark
 color: slate
@@ -16,3 +19,32 @@ color: slate
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
+
+layout:
+  Home Automation:
+    style: row
+    columns: 1
+    header: false
+
+  Media:
+    style: row
+    columns: 1
+
+    Media1:
+      style: row
+      columns: 2
+      header: false
+    
+    Media2:
+      style: row
+      columns: 3
+      header: false
+
+  Tools:
+    style: row
+    columns: 4
+
+
+  Weather:
+    style: row
+    columns: 1

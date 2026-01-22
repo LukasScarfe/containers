@@ -1,6 +1,5 @@
 services:
 
-
   #### MINI-QR: QR Code Generator ####
   mini-qr:
     image: ghcr.io/lyqht/mini-qr:main
@@ -9,11 +8,13 @@ services:
     ports:
       - "5675:8080"
     volumes:
-      - ./mini-qr/data/app/data:/app/data
+      - ./mini-qr/data:/app/data
     networks:
       - tools-nw
-
-
+    environment:
+      - VITE_HIDE_CREDITS=true
+      - VITE_QR_CODE_PRESETS='[{"props":{"data":"Have nice day!","image":"https://raw.githubusercontent.com/LukasScarfe/personal_site/refs/heads/master/assets/img/logo2.png","width":200,"height":200,"margin":0,"dotsOptions":{"color":"#640000","type":"dots"},"cornersSquareOptions":{"color":"#640000","type":"square"},"cornersDotOptions":{"color":"#640000","type":"square"},"imageOptions":{"margin":0},"qrOptions":{"errorCorrectionLevel":"H"}},"style":{"borderRadius":"24px","background":"#ffffff"},"frame":null}]'
+      - VITE_DEFAULT_PRESET="c1"
 
   #### MEALIE: Recipe Manager & Meal Planner ####
   mealie:
@@ -63,6 +64,56 @@ services:
       - ./vscode/config:/config
     networks:
       - tools-nw
+
+
+
+
+  #### HUGINN: Automation Agent System ####
+  huginn:
+    image: huginn/huginn
+    container_name: huginn
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./huginn/data:/var/lib/mysql
+    networks:
+      - tools-nw
+    environment:
+      - TZ=America/Vancouver
+      - HUGINN_DATABASE_NAME=huginn
+      - HUGINN_DATABASE_USERNAME=root
+      - HUGINN_DATABASE_PASSWORD=${HUGINN_DB_PASS}
+      - HUGINN_DATABASE_ADAPTER=mysql2
+      - HUGINN_DATABASE_HOST=huginn-db
+      - REDIS_URL=redis://huginn-redis:6379/0
+      - INTENTIONALLY_SLEEP=10
+    depends_on:
+      - huginn-db
+      - huginn-redis
+
+  #### HUGINN DB: MySQL Storage ####
+  huginn-db:
+    image: mariadb:10.5
+    container_name: huginn-db
+    restart: unless-stopped
+    networks:
+      - tools-nw
+    environment:
+      - MYSQL_ROOT_PASSWORD=${HUGINN_DB_PASS}
+      - MYSQL_DATABASE=huginn
+    volumes:
+      - ./huginn/mysql:/var/lib/mysql
+
+  #### HUGINN REDIS: Performance Cache ####
+  huginn-redis:
+    image: redis:6-alpine
+    container_name: huginn-redis
+    restart: unless-stopped
+    networks:
+      - tools-nw
+  
+
 
 
 networks:

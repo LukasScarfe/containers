@@ -2,11 +2,40 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/info-widgets/
 
+- logo:
+    icon: https://raw.githubusercontent.com/LukasScarfe/personal_site/refs/heads/master/assets/img/logo.png
+    href: https://{{HOMEPAGE_VAR_EXPOSED_URL}}
+    
 - resources:
     cpu: true
     memory: true
     disk: /
+    network: true
+    uptime: true
+    cputemp: true
+    tempmin: 0 # optional, minimum cpu temp
+    tempmax: 100 # optional, maximum cpu temp
+    
+
+- datetime:
+    text_size: sm
+    locale: en
+    format:
+        dateStyle: long
+        timeStyle: long
 
 - search:
     provider: google
     target: _blank
+    #focus: true
+    showSearchSuggestions: true
+
+- openmeteo:
+    label: Vancouver # Optional
+    latitude: 49.271   # Replace with your latitude
+    longitude: -123.118  # Replace with your longitude
+    timezone: America/Vancouver      # Or specific like America/New_York
+    units: metric       # Use 'imperial' for Fahrenheit
+    cache: 5            # Updates every 5 minutes
+
+
