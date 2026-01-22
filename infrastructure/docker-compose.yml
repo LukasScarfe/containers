@@ -76,7 +76,7 @@ services:
     volumes:
       - ./speedtest/config:/config
     ports:
-      - 80:80
+      - 8013:80
     restart: unless-stopped
 
 
@@ -113,6 +113,33 @@ services:
     env_file:
       - .env
     restart: unless-stopped
+    networks:
+      - infrastructure-nw
+
+
+
+  adguardhome:
+    image: adguard/adguardhome:latest
+    container_name: adguardhome
+    restart: unless-stopped
+    # Using specific volumes to match your modular directory structure
+    volumes:
+      - ./adguard/work:/opt/adguardhome/work
+      - ./adguard/conf:/opt/adguardhome/conf
+    # ports:
+    #   # DNS Standard Ports (Required for network filtering)
+    #   - "53:53/tcp"
+    #   - "53:53/udp"
+    #   # Initial Setup Wizard (Only needed for first-time config)
+    #   - "3000:3000/tcp"
+    #   # Admin Web UI (Moved to 3030 to avoid conflict with Speedtest/Metube)
+    #   - "3030:80/tcp"
+    #   # DNS-over-HTTPS / TLS (Optional, standard ports)
+    #   - "443:443/tcp"
+    #   - "853:853/tcp"
+    network_mode: host
+
+
 
   cloudflared:
     image: cloudflare/cloudflared:latest
@@ -122,6 +149,7 @@ services:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     command: tunnel --no-autoupdate run
     network_mode: host
+
 #
 networks:
   infrastructure-nw:

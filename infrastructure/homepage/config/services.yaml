@@ -215,7 +215,7 @@
         ping: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
         widget:
             type: speedtest
-            url: "{{HOMEPAGE_VAR_LOCAL_IP}}:80"
+            url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8013"
             key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
             version: 2 
             bitratePrecision: 0
