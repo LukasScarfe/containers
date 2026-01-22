@@ -169,77 +169,92 @@
     
 
 - Tools:
-    - QR Code Generator:
-        icon: https://upload.wikimedia.org/wikipedia/commons/3/31/MM_QRcode.png?20120720164609
-        href: http://qr.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        description: Custom QR Generator
-        container: mini-qr
-        server: my-docker
-        ping: http://qr.{{HOMEPAGE_VAR_EXPOSED_URL}}
-    
-    - Michelle's Code:
-        icon: visual-studio-code.png
-        description: Michelle's VSCode Server
-        href: https://code.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        container: vscode
-        ping: https://code.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        #ping: {{HOMEPAGE_VAR_LOCAL_IP}}:8443
-        showStats: true
+    - Tools1:
+        - QR Code Generator:
+            icon: https://upload.wikimedia.org/wikipedia/commons/3/31/MM_QRcode.png?20120720164609
+            href: http://qr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Custom QR Generator
+            container: mini-qr
+            server: my-docker
+            ping: http://qr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        
+        - Michelle's Code:
+            icon: visual-studio-code.png
+            description: Michelle's VSCode Server
+            href: https://code.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            container: vscode
+            ping: https://code.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            #ping: {{HOMEPAGE_VAR_LOCAL_IP}}:8443
+            showStats: true
 
-    - MeTube:
-        icon: metube.png
-        href: https://youtube.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        description: YouTube Downloader
-        server: my-docker
-        container: metube
-        ping: https://youtube.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        - MeTube:
+            icon: metube.png
+            href: https://youtube.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: YouTube Downloader
+            server: my-docker
+            container: metube
+            ping: https://youtube.{{HOMEPAGE_VAR_EXPOSED_URL}}
 
-    - Synology NAS:
-        icon: synology.png # Or use a direct URL to a Synology logo
-        href: "{{HOMEPAGE_VAR_SYNOLOGY_QUICKCONNECT}}"
-        description: Synology QuickConnect
-        ping: "{{HOMEPAGE_VAR_SYNOLOGY_QUICKCONNECT}}"
+        - Synology NAS:
+            icon: synology.png # Or use a direct URL to a Synology logo
+            href: "{{HOMEPAGE_VAR_SYNOLOGY_QUICKCONNECT}}"
+            description: Synology QuickConnect
+            ping: "{{HOMEPAGE_VAR_SYNOLOGY_QUICKCONNECT}}"
 
-    - Synology Photos:
-        icon: synology-photos.png
-        # Use your QuickConnect or local IP address
-        href: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}" 
-        description: Photo Management & Backup
-        ping: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}" 
+        - Synology Photos:
+            icon: synology-photos.png
+            # Use your QuickConnect or local IP address
+            href: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}" 
+            description: Photo Management & Backup
+            ping: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}" 
 
-    - Speedtest:
-        icon: speedtest-tracker.png
-        href: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        description: Speedtest Tracker
-        container: speedtest-tracker
-        ping: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        widget:
-            type: speedtest
-            url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8013"
-            key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
-            version: 2 
-            bitratePrecision: 0
+        - Speedtest:
+            icon: speedtest-tracker.png
+            href: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Speedtest Tracker
+            container: speedtest-tracker
+            ping: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            widget:
+                type: speedtest
+                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8013"
+                key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
+                version: 2 
+                bitratePrecision: 0
 
-    - Mealie:
-        icon: mealie.png
-        href: https://recipes.{{HOMEPAGE_VAR_EXPOSED_URL}}
-        description: Recipe Manager & Planner
-        container: mealie
-        widget:
-            type: mealie
-            url: "{{HOMEPAGE_VAR_LOCAL_IP}}:9925"
-            key: "{{HOMEPAGE_VAR_MEALIE_KEY}}"
-            version: 2
-            fields: ["recipes", "users"]
+        - Mealie:
+            icon: mealie.png
+            href: https://recipes.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Recipe Manager & Planner
+            container: mealie
+            widget:
+                type: mealie
+                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:9925"
+                key: "{{HOMEPAGE_VAR_MEALIE_KEY}}"
+                version: 2
+                fields: ["recipes", "users"]
 
-    - Cloudflare:
-        icon: cloudflare.png
-        href: https://one.dash.cloudflare.com/
-        widget:
-            type: cloudflared
-            accountid: "{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}"
-            tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_ID}}"
-            key: "{{HOMEPAGE_VAR_CLOUDFLARE_API_TOKEN}}"
+        - Cloudflare:
+            icon: cloudflare.png
+            href: https://one.dash.cloudflare.com/
+            widget:
+                type: cloudflared
+                accountid: "{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}"
+                tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_ID}}"
+                key: "{{HOMEPAGE_VAR_CLOUDFLARE_API_TOKEN}}"
+
+    - Tools2:
+        - Adguard Home:
+            icon: adguard.png
+            href: https://adguard.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Network-wide Ad Blocker
+            container: adguard
+            ping: https://adguard.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            widget:
+                type: adguard
+                url: "{{HOMEPAGE_VAR_LOCAL_IP}}"
+                username: "{{HOMEPAGE_VAR_ADGUARD_USER}}"
+                password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
+                fields: ["queries", "blocked", "filtered", "latency"]
 
 
 

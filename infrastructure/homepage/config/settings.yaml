@@ -42,7 +42,17 @@ layout:
 
   Tools:
     style: row
-    columns: 4
+    columns: 1
+    
+    Tools1:
+      style: row
+      columns: 4
+      header: false
+
+    Tools2:
+      style: row
+      columns: 1
+      header: false
 
 
   Weather:
