@@ -69,7 +69,7 @@
                 type: plex
                 url: "{{HOMEPAGE_VAR_LOCAL_IP}}:32400"
                 key: "{{HOMEPAGE_VAR_PLEX_KEY}}"
-                fields: ["movies", "tv"]
+                fields: ["streams","movies", "tv"]
 
         - Overseerr:
             icon: overseerr.png
