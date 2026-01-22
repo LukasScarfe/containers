@@ -40,6 +40,7 @@ services:
       - ./shelfmark/config:/config
       # Point this to the SAME ingest folder as CWA
       - ${CALIBRE_INGEST}:/books 
+      - ./calibre/config/app.db:/auth/app.db:ro
     ports:
       - "8084:8084"
     healthcheck:
