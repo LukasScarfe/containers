@@ -66,53 +66,66 @@ services:
       - tools-nw
 
 
-
-
-  #### HUGINN: Automation Agent System ####
   huginn:
-    image: huginn/huginn
     container_name: huginn
-    restart: unless-stopped
-    ports:
-      - "3002:3000"
-    volumes:
-      - ./huginn/data:/var/lib/mysql
-    networks:
-      - tools-nw
-    environment:
-      - TZ=America/Vancouver
-      - HUGINN_DATABASE_NAME=huginn
-      - HUGINN_DATABASE_USERNAME=root
-      - HUGINN_DATABASE_PASSWORD=${HUGINN_DB_PASS}
-      - HUGINN_DATABASE_ADAPTER=mysql2
-      - HUGINN_DATABASE_HOST=huginn-db
-      - REDIS_URL=redis://huginn-redis:6379/0
-      - INTENTIONALLY_SLEEP=10
+    #image: mjysci/huginn:arm32v7 
+    #Use image for what you have Mjysci is for arm/aarch64. use huginn/huginn for AMD/linux x86 
+    image: ghcr.io/huginn/huginn
     depends_on:
-      - huginn-db
-      - huginn-redis
-
-  #### HUGINN DB: MySQL Storage ####
-  huginn-db:
-    image: mariadb:10.5
-    container_name: huginn-db
-    restart: unless-stopped
-    networks:
-      - tools-nw
-    environment:
-      - MYSQL_ROOT_PASSWORD=${HUGINN_DB_PASS}
-      - MYSQL_DATABASE=huginn
+      - mysql-huginn
+    ports:
+      - "3335:3000" #keep inernal port mapped to 3000, you can map external port anywhere you want
     volumes:
-      - ./huginn/mysql:/var/lib/mysql
-
-  #### HUGINN REDIS: Performance Cache ####
-  huginn-redis:
-    image: redis:6-alpine
-    container_name: huginn-redis
+      - "./huginn/data:/var/lib/mySQL" 
+    #maps container volume to local directory called data in directory this compose file is saved in
+      - "./huginn:/app/huginn"
+    #This will create a new volume called huginn that is stored in a local directory called huginn (relative to the location of the Docker Compose file) and is mounted to the /app/huginn directory in the huginn container.
     restart: unless-stopped
-    networks:
-      - tools-nw
-  
+    links:
+      - mysql-huginn
+
+  mysql-huginn:
+    container_name: mysql-hugin
+    #image: yobasystems/alpine-mariadb:10.4.17-arm32v7
+    image: mysql:latest
+    #Comment out the image you do not want to use. mysql:lates is for AMD or x84 linux
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - "./huginn/database:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: huginn #change this or use .env file for security
+      MYSQL_PASSWORD: huginn #Change this default PW
+      MYSQL_DATABASE: huginn
+      MYSQL_USER: huginn
+
+
+  yourls:
+    image: yourls
+    container_name: yourls
+    restart: always
+    depends_on:
+      - mysql-yourls
+    ports:
+      - 8189:8080
+    environment:
+      - YOURLS_DB_HOST=mysql-yourls 
+      - YOURLS_DB_USER=${YOURLS_DB_USER}
+      - YOURLS_DB_PASS=${YOURLS_DB_PASS}
+      - YOURLS_DB_NAME=yourls_db
+      - YOURLS_SITE=${YOURLS_ADDRESS}
+      - YOURLS_USER=${YOURLS_USER}
+      - YOURLS_PASS=${YOURLS_PASS}
+      - YOURLS_PRIVATE = true
+  mysql-yourls:
+    image: mysql
+    container_name: mysql-yourls
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${YOURLS_DB_PASS}
+      - MYSQL_DATABASE=yourls_db
+    volumes:
+      - ./yourls/db:/var/lib/mysql
 
 
 

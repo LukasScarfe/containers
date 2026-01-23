@@ -177,6 +177,15 @@
             container: mini-qr
             server: my-docker
             ping: http://qr.{{HOMEPAGE_VAR_EXPOSED_URL}}
+
+        
+        - YOURLS:
+            icon: yourls.png
+            href: https://r.{{HOMEPAGE_VAR_EXPOSED_URL}}/admin/
+            description: URL Shortener
+            container: yourls
+            server: my-docker
+            ping: http://r.{{HOMEPAGE_VAR_EXPOSED_URL}}
         
         - Michelle's Code:
             icon: visual-studio-code.png
@@ -206,20 +215,7 @@
             # Use your QuickConnect or local IP address
             href: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}" 
             description: Photo Management & Backup
-            ping: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}" 
-
-        - Speedtest:
-            icon: speedtest-tracker.png
-            href: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
-            description: Speedtest Tracker
-            container: speedtest-tracker
-            ping: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
-            widget:
-                type: speedtest
-                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8013"
-                key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
-                version: 2 
-                bitratePrecision: 0
+            ping: "{{HOMEPAGE_VAR_SYNOLOGY_PHOTOS}}"         
 
         - Mealie:
             icon: mealie.png
@@ -236,6 +232,7 @@
         - Cloudflare:
             icon: cloudflare.png
             href: https://one.dash.cloudflare.com/
+            container: cloudflared-server
             widget:
                 type: cloudflared
                 accountid: "{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}"
@@ -243,11 +240,35 @@
                 key: "{{HOMEPAGE_VAR_CLOUDFLARE_API_TOKEN}}"
 
     - Tools2:
+
+        - Speedtest:
+            icon: speedtest-tracker.png
+            href: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Speedtest Tracker
+            container: speedtest-tracker
+            ping: https://speedtest.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            widget:
+                type: speedtest
+                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8013"
+                key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
+                version: 2 
+                bitratePrecision: 1
+
+        - OctoPrint:
+            icon: octoprint
+            href: https://octoprint.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Ender 3 Pro
+            ping: "{{HOMEPAGE_VAR_FEDORA_IP}}:8888"
+            widget:
+                type: octoprint
+                url: "{{HOMEPAGE_VAR_FEDORA_IP}}:8888"
+                key: "{{HOMEPAGE_VAR_OCTOPRINT_API_KEY}}"
+
         - Adguard Home:
             icon: https://upload.wikimedia.org/wikipedia/commons/a/a3/Adguard.png
             href: https://adguard.{{HOMEPAGE_VAR_EXPOSED_URL}}
             description: Network-wide Ad Blocker
-            container: adguard
+            container: adguardhome
             ping: https://adguard.{{HOMEPAGE_VAR_EXPOSED_URL}}
             widget:
                 type: adguard
@@ -255,7 +276,6 @@
                 username: "{{HOMEPAGE_VAR_ADGUARD_USER}}"
                 password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
                 fields: ["queries", "blocked", "filtered", "latency"]
-
 
 
 - Weather Center:

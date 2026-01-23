@@ -92,10 +92,10 @@ services:
       - TZ=America/Vancouver
     volumes:
       - ./bazarr/config:/config
-      - ${MOVIES_12_DIR}:/movies-twelve
-      - ${TV_12_DIR}:/tv-twelve
-      - ${MOVIES_6_DIR}:/movies-newHDD
-      - ${TV_6_DIR}:/tv-newHDD
+      - ${MOVIES_12_DIR}:/movies-Twelve
+      - ${TV_12_DIR}:/tv-Twelve
+      - ${MOVIES_6_DIR}:/movies-NewHDD
+      - ${TV_6_DIR}:/tv-NewHDD
     ports:
       - 6767:6767
     restart: unless-stopped
