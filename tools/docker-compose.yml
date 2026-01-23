@@ -116,7 +116,7 @@ services:
       - YOURLS_SITE=${YOURLS_ADDRESS}
       - YOURLS_USER=${YOURLS_USER}
       - YOURLS_PASS=${YOURLS_PASS}
-      - YOURLS_PRIVATE = true
+      - YOURLS_PRIVATE=true
   mysql-yourls:
     image: mysql
     container_name: mysql-yourls
@@ -126,6 +126,22 @@ services:
       - MYSQL_DATABASE=yourls_db
     volumes:
       - ./yourls/db:/var/lib/mysql
+
+
+  octoprint:
+    image: octoprint/octoprint:latest
+    container_name: octoprint
+    restart: unless-stopped
+    ports:
+      - "8888:80"
+    volumes:
+      - ./octoprint:/octoprint
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0 
+    #  - /dev/video0:/dev/video0 
+    environment:
+      - ENABLE_MJPG_STREAMER=true
+      - TZ=America/Vancouver
 
 
 

@@ -258,10 +258,10 @@
             icon: octoprint
             href: https://octoprint.{{HOMEPAGE_VAR_EXPOSED_URL}}
             description: Ender 3 Pro
-            ping: "{{HOMEPAGE_VAR_FEDORA_IP}}:8888"
+            ping: https://octoprint.{{HOMEPAGE_VAR_EXPOSED_URL}}
             widget:
                 type: octoprint
-                url: "{{HOMEPAGE_VAR_FEDORA_IP}}:8888"
+                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8888"
                 key: "{{HOMEPAGE_VAR_OCTOPRINT_API_KEY}}"
 
         - Adguard Home:
