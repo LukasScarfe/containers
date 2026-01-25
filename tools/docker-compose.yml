@@ -83,7 +83,6 @@ services:
     restart: unless-stopped
     links:
       - mysql-huginn
-
   mysql-huginn:
     container_name: mysql-hugin
     #image: yobasystems/alpine-mariadb:10.4.17-arm32v7

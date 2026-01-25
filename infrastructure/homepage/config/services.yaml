@@ -42,7 +42,7 @@
                 url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8181"
                 key: "{{HOMEPAGE_VAR_TAUTULLI_KEY}}"
                 enableUser: true
-                showEpisodeNumber: true
+                #showEpisodeNumber: true
 
         - qBittorrent:
             icon: qbittorrent.png
