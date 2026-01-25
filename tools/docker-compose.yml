@@ -137,7 +137,7 @@ services:
       - ./octoprint:/octoprint
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0 
-      - /dev/video0:/dev/video0 
+      - /dev/v4l/by-id/usb-Linux_Foundation_USB_Webcam_gadget-video-index0:/dev/video0
     environment:
       - ENABLE_MJPG_STREAMER=true
       - TZ=America/Vancouver
