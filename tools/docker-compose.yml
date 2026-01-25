@@ -137,7 +137,7 @@ services:
       - ./octoprint:/octoprint
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0 
-    #  - /dev/video0:/dev/video0 
+      - /dev/video0:/dev/video0 
     environment:
       - ENABLE_MJPG_STREAMER=true
       - TZ=America/Vancouver
