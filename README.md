@@ -61,8 +61,13 @@ The lab is divided into logical stacks. Each directory contains its own `docker-
 *Daily utilities and productivity apps.*
 - **Mealie** (`9925`): A recipe manager and meal planner.
 - **Mini-QR** (`5675`): A lightweight service for generating custom QR codes.
-- **Code-Server** (`8443`): VS Code running in the browser for remote configuration.
+- **Code-Server** (`8443`): VS Code running in the browser for remote.configuration.
 - **Metube** (`8081`): A web GUI for downloading videos from YouTube and other sites.
+- **Huginn** (`3335`): Automated Agents, not in use at all.
+- **YouRLs** (`8189`): Custom URL shortener and custom tracking for each link.
+- **Octoprint** (`8888`): 3D printer interface server for remote printing and tracking prints.
+- **BentoPDF** (`3987`): PDF manipulation and editing tool.
+
 
 ### 🎮 Minecraft
 - **Minecraft Server** (`25565`): Dedicated Java Edition server.

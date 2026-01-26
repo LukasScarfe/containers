@@ -65,40 +65,35 @@ services:
     networks:
       - tools-nw
 
-
+  #### Huginn: Automated  ####
   huginn:
     container_name: huginn
-    #image: mjysci/huginn:arm32v7 
-    #Use image for what you have Mjysci is for arm/aarch64. use huginn/huginn for AMD/linux x86 
     image: ghcr.io/huginn/huginn
     depends_on:
       - mysql-huginn
     ports:
-      - "3335:3000" #keep inernal port mapped to 3000, you can map external port anywhere you want
+      - "3335:3000" 
     volumes:
       - "./huginn/data:/var/lib/mySQL" 
-    #maps container volume to local directory called data in directory this compose file is saved in
       - "./huginn:/app/huginn"
-    #This will create a new volume called huginn that is stored in a local directory called huginn (relative to the location of the Docker Compose file) and is mounted to the /app/huginn directory in the huginn container.
     restart: unless-stopped
     links:
       - mysql-huginn
+  #### SQL Huginn: Database for Huginn ####
   mysql-huginn:
-    container_name: mysql-hugin
-    #image: yobasystems/alpine-mariadb:10.4.17-arm32v7
+    container_name: mysql-huginn
     image: mysql:latest
-    #Comment out the image you do not want to use. mysql:lates is for AMD or x84 linux
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
       - "./huginn/database:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: huginn #change this or use .env file for security
-      MYSQL_PASSWORD: huginn #Change this default PW
+      MYSQL_ROOT_PASSWORD: huginn 
+      MYSQL_PASSWORD: huginn 
       MYSQL_DATABASE: huginn
       MYSQL_USER: huginn
 
-
+  #### Yourls: Custom URL shortener and tracking ####
   yourls:
     image: yourls
     container_name: yourls
@@ -126,7 +121,7 @@ services:
     volumes:
       - ./yourls/db:/var/lib/mysql
 
-
+  #### Octoprint: 3d Printer Interface ####
   octoprint:
     image: octoprint/octoprint:latest
     container_name: octoprint
@@ -141,10 +136,22 @@ services:
     environment:
       - ENABLE_MJPG_STREAMER=true
       - TZ=America/Vancouver
+    networks:
+      - printer-nw
 
-
+  #### BentoPDF: PDF Manipulation and editing tool ####
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf:latest
+    container_name: bentopdf
+    ports:
+      - '3987:8080'
+    restart: unless-stopped
 
 networks:
   tools-nw:
     name: tools-nw
+    driver: bridge
+
+  printer-nw:
+    name: printer-nw
     driver: bridge
