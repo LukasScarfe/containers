@@ -51,7 +51,7 @@ layout:
 
     Tools2:
       style: row
-      columns: 1
+      columns: 2
       header: false
 
 

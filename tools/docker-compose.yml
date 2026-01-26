@@ -111,6 +111,7 @@ services:
       - YOURLS_USER=${YOURLS_USER}
       - YOURLS_PASS=${YOURLS_PASS}
       - YOURLS_PRIVATE=true
+      
   mysql-yourls:
     image: mysql
     container_name: mysql-yourls

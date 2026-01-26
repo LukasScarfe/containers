@@ -3,6 +3,7 @@
 # https://gethomepage.dev/configs/services/
 
 - Home Automation:
+
     - Home Assistant:
         icon: home-assistant.png
         href: https://homeassistant.{{HOMEPAGE_VAR_EXPOSED_URL}}
@@ -26,7 +27,9 @@
                   label: Sleep Lights
 
 - Media:
+
     - Media1:
+
         - Tautulli:
             icon: tautulli.png
             href: https://tautulli.{{HOMEPAGE_VAR_EXPOSED_URL}}
@@ -58,6 +61,7 @@
 
 
     - Media2:
+
         - Plex:
             icon: plex.png
             href: https://app.plex.tv/desktop/#!/
@@ -169,7 +173,9 @@
     
 
 - Tools:
+
     - Tools1:
+
         - QR Code Generator:
             icon: https://upload.wikimedia.org/wikipedia/commons/3/31/MM_QRcode.png?20120720164609
             href: http://qr.{{HOMEPAGE_VAR_EXPOSED_URL}}
@@ -184,8 +190,14 @@
             href: https://r.{{HOMEPAGE_VAR_EXPOSED_URL}}/admin/
             description: URL Shortener
             container: yourls
-            server: my-docker
-            ping: http://r.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            ping: https://r.{{HOMEPAGE_VAR_EXPOSED_URL}}
+
+        - BentoPDF:
+            icon: bentopdf.png
+            href: https://pdf.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: PDF Management
+            container: bentopdf
+            ping: https://pdf.{{HOMEPAGE_VAR_EXPOSED_URL}}
         
         - Michelle's Code:
             icon: visual-studio-code.png
@@ -227,17 +239,7 @@
                 url: "{{HOMEPAGE_VAR_LOCAL_IP}}:9925"
                 key: "{{HOMEPAGE_VAR_MEALIE_KEY}}"
                 version: 2
-                fields: ["recipes", "users"]
-
-        - Cloudflare:
-            icon: cloudflare.png
-            href: https://one.dash.cloudflare.com/
-            container: cloudflared-server
-            widget:
-                type: cloudflared
-                accountid: "{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}"
-                tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_ID}}"
-                key: "{{HOMEPAGE_VAR_CLOUDFLARE_API_TOKEN}}"
+                fields: [] #"recipes", "users"]
 
     - Tools2:
 
@@ -264,6 +266,16 @@
                 url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8888"
                 key: "{{HOMEPAGE_VAR_OCTOPRINT_API_KEY}}"
 
+        - Cloudflare:
+            icon: cloudflare.png
+            href: https://one.dash.cloudflare.com/
+            container: cloudflared-server
+            widget:
+                type: cloudflared
+                accountid: "{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}"
+                tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_ID}}"
+                key: "{{HOMEPAGE_VAR_CLOUDFLARE_API_TOKEN}}"
+
         - Adguard Home:
             icon: https://upload.wikimedia.org/wikipedia/commons/a/a3/Adguard.png
             href: https://adguard.{{HOMEPAGE_VAR_EXPOSED_URL}}
@@ -279,6 +291,7 @@
 
 
 - Weather Center:
+
     - Weather Radar:
         icon: mdi-weather-radar
         widget:
