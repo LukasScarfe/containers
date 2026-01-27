@@ -131,14 +131,18 @@ services:
       - "8888:80"
     volumes:
       - ./octoprint:/octoprint
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0 
-      - /dev/v4l/by-id/usb-Linux_Foundation_USB_Webcam_gadget-video-index0:/dev/video0
+      - /dev:/dev 
+    device_cgroup_rules:
+      - 'c 81:* rmw'   # Permission for Video devices (Major 81)
+      - 'c 188:* rmw'
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0 
+    #   - /dev/v4l/by-id/usb-Linux_Foundation_USB_Webcam_gadget-video-index0:/dev/video0
     environment:
       - ENABLE_MJPG_STREAMER=true
       - TZ=America/Vancouver
     networks:
-      - printer-nw
+      - tools-nw
 
   #### BentoPDF: PDF Manipulation and editing tool ####
   bentopdf:
