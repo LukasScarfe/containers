@@ -6,6 +6,10 @@ title: Lukas Scarfe Homepage
 
 favicon: https://raw.githubusercontent.com/LukasScarfe/personal_site/refs/heads/master/static/favicon.ico
 
+disableCollapse: true
+
+iconStyle: theme
+
 background: 
   image: https://wallpapercave.com/wp/wp4183789.jpg
   blur: xs
@@ -27,6 +31,7 @@ layout:
     header: false
 
   Media:
+    icon: mdi-play-box-multiple-outline
     style: row
     columns: 1
 
@@ -41,8 +46,10 @@ layout:
       header: false
 
   Tools:
+    icon: mdi-tools
     style: row
     columns: 1
+    
     
     Tools1:
       style: row
@@ -56,5 +63,7 @@ layout:
 
 
   Weather:
+    icon: mdi-weather-partly-snowy-rainy
     style: row
     columns: 1
+    

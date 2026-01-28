@@ -140,6 +140,8 @@ services:
     #   - /dev/v4l/by-id/usb-Linux_Foundation_USB_Webcam_gadget-video-index0:/dev/video0
     environment:
       - ENABLE_MJPG_STREAMER=true
+      # We point the streamer to the EXACT persistent path you provided
+      - MJPG_STREAMER_INPUT=-n -d /dev/v4l/by-id/usb-Linux_Foundation_USB_Webcam_gadget-video-index0 -r 1280x720 -f 15
       - TZ=America/Vancouver
     networks:
       - tools-nw

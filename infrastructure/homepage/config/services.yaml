@@ -290,10 +290,10 @@
                 fields: ["queries", "blocked", "filtered", "latency"]
 
 
-- Weather Center:
+- Weather:
 
-    - Weather Radar:
-        icon: mdi-weather-radar
+    - "":
+        header: false
         widget:
           type: iframe
           src: https://www.rainviewer.com/map.html?loc=49.183,-122.8249,8&oCS=1&c=3&o=83&lm=1&layer=radar&sm=1&sn=1&ts=2
