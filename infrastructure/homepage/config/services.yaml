@@ -47,21 +47,6 @@
                 enableUser: true
                 #showEpisodeNumber: true
 
-        - qBittorrent:
-            icon: qbittorrent.png
-            href: https://qbit.{{HOMEPAGE_VAR_EXPOSED_URL}}
-            description: Torrent Client
-            container: qbittorrent
-            ping: https://qbit.{{HOMEPAGE_VAR_EXPOSED_URL}}
-            widget:
-                type: qbittorrent
-                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8484"
-                username: "{{HOMEPAGE_VAR_QBIT_USER}}"
-                password: "{{HOMEPAGE_VAR_QBIT_PASSWORD}}"
-
-
-    - Media2:
-
         - Plex:
             icon: plex.png
             href: https://app.plex.tv/desktop/#!/
@@ -75,6 +60,19 @@
                 key: "{{HOMEPAGE_VAR_PLEX_KEY}}"
                 fields: ["streams","movies", "tv"]
 
+
+        - qBittorrent:
+            icon: qbittorrent.png
+            href: https://qbit.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            description: Torrent Client
+            container: qbittorrent
+            ping: https://qbit.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            widget:
+                type: qbittorrent
+                url: "{{HOMEPAGE_VAR_LOCAL_IP}}:8484"
+                username: "{{HOMEPAGE_VAR_QBIT_USER}}"
+                password: "{{HOMEPAGE_VAR_QBIT_PASSWORD}}"
+
         - Overseerr:
             icon: overseerr.png
             href: https://requests.{{HOMEPAGE_VAR_EXPOSED_URL}}
@@ -86,6 +84,9 @@
                 url: "{{HOMEPAGE_VAR_LOCAL_IP}}:5055"
                 key: "{{HOMEPAGE_VAR_OVERSEER_KEY}}"
                 fields: ["processing","approved", "available"]
+
+
+    - Media2:
             
         - Sonarr:
             icon: sonarr.png
