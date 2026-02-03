@@ -47,23 +47,23 @@ services:
 
 
   #### VS Code Server: Michelle's Code ####
-  vscode:
-    image: lscr.io/linuxserver/code-server:latest
-    container_name: vscode
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Vancouver
-      - PASSWORD=${VSCODE_PASS}
-      - SUDO_PASSWORD=${VSCODE_PASS}
-      - DEFAULT_WORKSPACE=./vscode/config/workspaces/Anki 
-    restart: unless-stopped
-    ports:
-      - 8443:8443
-    volumes:
-      - ./vscode/config:/config
-    networks:
-      - tools-nw
+  # vscode:
+  #   image: lscr.io/linuxserver/code-server:latest
+  #   container_name: vscode
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=America/Vancouver
+  #     - PASSWORD=${VSCODE_PASS}
+  #     - SUDO_PASSWORD=${VSCODE_PASS}
+  #     - DEFAULT_WORKSPACE=./vscode/config/workspaces/Anki 
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8443:8443
+  #   volumes:
+  #     - ./vscode/config:/config
+  #   networks:
+  #     - tools-nw
 
   #### Huginn: Automated  ####
   huginn:

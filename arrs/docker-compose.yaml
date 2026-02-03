@@ -111,6 +111,21 @@ services:
     ports:
       - 7171:7171
     restart: unless-stopped
+    networks:
+      - arrs-nw
+
+  huntarr:
+    image: ghcr.io/plexguide/huntarr:latest
+    container_name: huntarr
+    restart: always
+    ports:
+      - "9705:9705"
+    volumes:
+      - ./huntarr/config:/config
+    environment:
+      - TZ=America/Vancouver
+    networks:
+      - arrs-nw
 
 networks:
   arrs-nw:
