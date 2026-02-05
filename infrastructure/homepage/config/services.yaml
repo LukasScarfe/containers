@@ -299,10 +299,9 @@
         ping: https://newpapers.{{HOMEPAGE_VAR_EXPOSED_URL}}
         widget:
             type: freshrss
-            url: https://newpapers.lukasscarfe.com
-            #url: https://newpapers.{{HOMEPAGE_VAR_EXPOSED_URL}}
-            username: 'admin'
-            password: 'FreshRSSPassword@'
+            url: "{{HOMEPAGE_VAR_FRESHRSS_API_ADDRESS}}"
+            username: "{{HOMEPAGE_VAR_FRESHRSS_USER}}"
+            password: "{{HOMEPAGE_VAR_FRESHRSS_PASS}}"
 
 
 
