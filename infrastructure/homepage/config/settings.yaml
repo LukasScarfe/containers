@@ -61,6 +61,11 @@ layout:
       columns: 2
       header: false
 
+  Research:
+    icon: mdi-book-alert
+    style: row
+    columns: 1
+
 
   Weather:
     icon: mdi-weather-partly-snowy-rainy

@@ -15,7 +15,7 @@
             custom:
                 # - state: zone.home
                 #   label: People Home
-                - state: sensor.bathroom_temp_humidity_sensor_temperature
+                - state: sensor.living_room_plant_shelf_temp_humidity_sensor_temperature
                   label: Temp
                 - state: sensor.living_room_plant_shelf_motion_sensor_illuminance
                   label: Brightness
@@ -25,7 +25,7 @@
                 #   label: Dining Lights
                 - state: switch.global_sleep_switches
                   label: Sleep Lights
-
+                  
 - Media:
 
     - Media1:
@@ -289,6 +289,21 @@
                 username: "{{HOMEPAGE_VAR_ADGUARD_USER}}"
                 password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
                 fields: ["queries", "blocked", "filtered", "latency"]
+
+
+- Research:
+    
+    - FreshRSS:
+        icon: https://public.boxcloud.com/api/2.0/internal_files/804104772302/versions/860288648702/representations/png_paged_2048x2048/content/1.png?access_token=1!bVgJd9RQ-xYFhp5dNH-7pR8U2-_ZYiWAdi16VQR5nRtYAb4bgX5jUop6a5LYgxBZawLwM_mohVrn89sjORkdz23Wba9HrSOYmZEIFXJZSkJm0cFtg3wXj4bTOJCutXdQ1FRCu0mHXVQ0XBwElk-0D4FulEdSzqnFNlKY_4zyqUAqJWn_QQGSIGmMFlubp4esfjIcssfFf9o4yvRK7TmDhQBbaYGSSpvGDbejpXFZ0Ql4KUc7AOWFr8824uEfURncQN7Kxf4YHYlal_Cs7kt46nVuGUOCKjKiY102plKJNE1vnVs_UVjJcnRav65PpDxhZB89A7-71fZ9V0GLR7h5HVnJG8RK1VA8Yi8Y6BYSmaUTDxplC5WlkURCC8LUhgfpoXmsqOG4fkU7VVWzE7hc8zc_n2Wr5LNk8Ub--Pza6kw3BdxAoSYzEH2lv0a05YZYbM8NwfLT2W6uNvsJ2FzvxMlPr0xFXBOsLSy55yV8ZFq6ThyQ3NrWtlVqXxonsy8ZqLvc1Ew4We94veBpJJ4CD6Jz4u9OCuNQ7RVxajApO2bQ7sa3wWM-zC1DmM5mSJHvekp0Uv3wNj3cmZuUmYWbNhluVAwb4BgY8o_h9E8zCNbBNE7NDYSj0a1qgdqOQMgPA-qGrSlDjEtKV62FqhGhqIxM8LtMA0VykZ7lmlCg8rU.&shared_link=https%3A%2F%2Fcornell.app.box.com%2Fv%2Farxiv-logomark-small-png&box_client_name=box-content-preview&box_client_version=3.17.0
+        href: https://newpapers.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        ping: https://newpapers.{{HOMEPAGE_VAR_EXPOSED_URL}}
+        widget:
+            type: freshrss
+            url: https://newpapers.lukasscarfe.com
+            #url: https://newpapers.{{HOMEPAGE_VAR_EXPOSED_URL}}
+            username: 'admin'
+            password: 'FreshRSSPassword@'
+
 
 
 - Weather:

@@ -154,6 +154,23 @@ services:
       - '3987:8080'
     restart: unless-stopped
 
+
+  freshrss:
+    image: lscr.io/linuxserver/freshrss:latest
+    container_name: freshrss
+    environment:
+      - PUID=1000  # Corrected syntax: using '='
+      - PGID=1000
+      - TZ=America/Vancouver
+      - CRON_MIN=*/15 # Corrected syntax and removed unnecessary quotes
+    volumes:
+      - ./freshrss/config:/config
+      # Map the local file to a file INSIDE the expected directory
+      - ./freshrss/custom-init.sh:/custom-cont-init.d/update-base-url.sh:ro
+    ports:
+      - 8798:80
+    restart: unless-stopped
+
 networks:
   tools-nw:
     name: tools-nw
