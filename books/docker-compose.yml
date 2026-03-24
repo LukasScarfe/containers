@@ -17,6 +17,9 @@ services:
       - ./calibre/plugins:/config/.config/calibre/plugins
     ports:
       - "8083:8083"
+    dns:
+      - 1.1.1.1  # Cloudflare
+      - 8.8.8.8  # Google
     networks:
       - books-nw
     entrypoint: >
